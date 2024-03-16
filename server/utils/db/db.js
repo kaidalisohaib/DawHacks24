@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function connectDB(uri) {
   try {
-    await mongoose.connect(uri);
+     await mongoose.connect(uri);
     // eslint-disable-next-line no-console
     console.log('Connected to MongoDB');
   } catch (e) {

@@ -8,3 +8,18 @@ html, body {
 body {
   margin: 0;
 }
+
+#about-us-container{
+  display: flex;
+}
+
+#about-us-text{
+  color: #EBE6EC;
+  text-align: left;
+  width: 60%;
+  margin-left: 20px;
+}
+
+#about-us-text h3{
+  text-align: center;
+}

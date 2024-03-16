@@ -5,7 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import '../../styles/UserProfile.css';
 import blank from '../../img/blank.png';
-
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 function UserProfile({setIsLoggedIn}) {
   const [user, setUser] = useState(null);
   const [customFoods, setCustomFoods] = useState([]);
@@ -87,6 +91,7 @@ function UserInfo({user, handleLogout}) {
     <section id="user-info">
       <img src={user.profileImageURI ? user.profileImageURI : blank} alt="Profile pic" />
       <h2>{user.name}</h2>
+      <button className="functionality-btn" id="daily-food-btn">View daily food</button>
       <button id="logout-btn" onClick={handleLogout}>Logout</button>
     </section>
   );
@@ -142,7 +147,17 @@ function UserDailyGoals() {
   return (
     <section id="user-goals">
       <h2>Your daily goals</h2>
-      <p>WIP</p>
+      <ul>
+        {/* These are only place holders */}
+        <li>Calories: <span className="daily-goals-numers">850/1000</span></li>
+        <li>Fat: <span className="daily-goals-numers">25g/50g</span></li>
+        <li>Protein: <span className="daily-goals-numers">200g/100g</span></li>
+        <li>Vitamic C: <span className="daily-goals-numers">20mg/25mg</span></li>
+      </ul>
+      {/* I will add a link to the ModifyGoals page*/}
+      <Link to="/goals">
+        <button className="functionality-btn">Modify Goals</button>
+      </Link>
     </section>
   );
 }
