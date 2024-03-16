@@ -81,7 +81,7 @@ async function addDailyFood(req, res){
 async function removeDailyFood(req, res){
   try{
     const user = await User.findOne({
-      $or: [{ username: 'amirrezamojtahedi2@gmail.com'}, { email: 'amirrezamojtahedi2@gmail.com' }]
+      $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
     });
     const id = req.params.id;
     user.dailyFood = user.dailyFood.filter(food => food._id.toString() !== id);
