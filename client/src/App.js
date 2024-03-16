@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import TopNavbar from './components/Navbar.js';
 import MainPage from './components/mainpage/MainPage.js';
 import UserProfile from './components/user/UserProfile.js';
@@ -13,13 +13,11 @@ import LoginPage from './components/user/LoginPage.js';
 import AboutUs from './components/AboutUs.js';
 import AddCustomIngredient from './components/forms/AddCustomIngredient.js';
 import ModifyGoals from './components/forms/ModifyGoals.js';
-import DailyFood from './components/mainpage/DailyFood.js';
 
 function App() {
   // List of all food names from DB (for search bar)
   const [foodDB, setFoodDB] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userDailyFood, setUserdailyFood] = useState(null);
   const originalListFoodRef = useRef([]);
   const savedFoodList = useRef([]);
 
@@ -56,11 +54,10 @@ function App() {
   // get session for navbar displaying correct icon
   async function userSession(){
     const resp = await fetch('/auth/session');
-    
     if (resp.status === 200) {
-      const data = await resp.json();
-      setUserdailyFood(data.user.dailyFood);
       setIsLoggedIn(true);
+    }else if(resp.status === 404){
+      setIsLoggedIn(false);
     }
   }
 
@@ -73,13 +70,9 @@ function App() {
    * getting user foods. - Oleks
    */
   useState (() => {
-    // userSession();
+    userSession();
     getOriginalFoods();
   }, []);
-
-  useEffect(() => {
-    userSession();
-  }, [isLoggedIn]);
 
   return (
     <>
@@ -120,11 +113,7 @@ function App() {
             path="/goals"
             element={<ModifyGoals />}
           />
-          <Route 
-            exact
-            path="/daily-food"
-            element={userDailyFood ? <DailyFood dailyFoodList={userDailyFood}/> : null}
-          />
+          
         </Routes>
       </Router>
     </>

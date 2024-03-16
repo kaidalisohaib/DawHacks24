@@ -44,6 +44,9 @@ function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isL
   }
 
   const addToDailyFood = async () => {
+    const statusEl = document.getElementById('status');
+    statusEl.innerText = '...';
+
     const modifiedTotatlFood = {...totalFood};
     Object.keys(modifiedTotatlFood).forEach(function(key) {
       // Check if the key's value is an object with both 'value' and 'percent' keys
@@ -57,7 +60,6 @@ function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isL
     await axios.post('api/v1/daily-food', {
       dailyFood: modifiedTotatlFood
     });
-    const statusEl = document.getElementById('status');
     statusEl.innerText = 'The custom food has been successfully added!';
 
   };
@@ -68,7 +70,8 @@ function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isL
       <section id="food-list">
         {foodItemNodes}
         {isLoggedIn && addedFoods.length > 0 && 
-          <><button type="button" className="functionality-btn" onClick={addToDailyFood}>
+          <><button type="button" className="functionality-btn" 
+            onClick={addToDailyFood}>
             Add to daily food
           </button><div id="status" class="input-row"></div></>
         }
