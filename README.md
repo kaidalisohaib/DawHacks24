@@ -1,6 +1,13 @@
 # NutritionCalculator
 
+# How to run the project
+1. Clone the repository at [here](https://github.com/kaidalisohaib/DawHacks24)
+2. Open the project in your favorite IDE
+3. Run npm build-start
+4. Open your browser and go to `http://localhost:3000/`
 
+# Project Overview
+This project is a simple nutrition calculator that allows you to calculate the nutritional value of a meal based on the ingredients you use. The project is built using the MERN tech stack. The app allows users to create profiles and add thier create their own custom ingredient in case the default database does not already include that ingredient. 
 
 # Data units
 1. Name

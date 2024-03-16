@@ -18,7 +18,7 @@ if (app.get('env') === 'production') {
   secure = true;
 }
 app.use(session({
-  secret: process.env.SECRET,
+  secret: 'SECRET=abcdefghijklmnopqrstuvwxyz',
   name: 'id',
   saveUninitialized: false,
   resave: false,
