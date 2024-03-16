@@ -8,7 +8,8 @@
         "seed": "node ./server/utils/seed.js",
         "build": "cd client && npm install && npm run build && cd ../server && npm install",
         "test": "cd server && npm run test",
-        "dev": "cd server && npm run dev"
+        "dev": "cd server && npm run dev",
+        "build-and-start": "npm run build && npm run start"
     },
     "authors": [
         "Dan Moraru",
