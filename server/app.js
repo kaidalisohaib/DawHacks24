@@ -32,7 +32,7 @@ app.use(session({
 
 app.use('/auth', authRoute);
 app.use('/food-buds/api/v1', foodRoute);
-app.use('/api/v1/:username', userRoute);
+app.use('/api/v1', userRoute);
 
 app.use(function(req, res, next) {
   next(createError(404));
