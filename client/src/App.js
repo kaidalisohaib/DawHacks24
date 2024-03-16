@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import TopNavbar from './components/Navbar.js';
 import MainPage from './components/mainpage/MainPage.js';
 import UserProfile from './components/user/UserProfile.js';

@@ -37,11 +37,13 @@ function MainPage({ listFood, isLoggedIn, updateWithCustomFood, savedFoodList, s
   useEffect(() => {
     getTotalNutrition(addedFoods);
     updateWithCustomFood();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addedFoods]);
 
   
   useEffect(() => {
     setAddedFoods(savedFoodList.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSelectFood = function (food) {
