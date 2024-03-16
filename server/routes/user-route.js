@@ -8,5 +8,6 @@ router.put('/goals', isAuthenticated, userController.updateGoals);
 router.get('/daily-food', isAuthenticated, userController.getDailyFood);
 router.post('/daily-food', isAuthenticated, userController.addDailyFood);
 router.delete('/daily-food/:id', isAuthenticated, userController.removeDailyFood);
+router.get('/total-daily-food', isAuthenticated, userController.getTotalDailyFood);
 
 module.exports = router;
