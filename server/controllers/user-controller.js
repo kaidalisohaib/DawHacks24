@@ -67,7 +67,10 @@ async function addDailyFood(req, res){
       $or: [{ username: 'amirrezamojtahedi2@gmail.com' }, { email: 'amirrezamojtahedi2@gmail.com' }]
     });
     const dailyFood = req.body.dailyFood;
-    user.dailyFood = dailyFood;
+    await User.findOneAndUpdate(
+      { _id: user._id }, 
+      { $push: { dailyFood: dailyFood } }
+    );
     await user.save();
     res.status(200).json({message: 'Daily food has been added successfully'});
   }catch(e){

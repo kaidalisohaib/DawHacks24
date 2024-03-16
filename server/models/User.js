@@ -5,6 +5,9 @@ const validator = require('validator');
 const userSchema = new Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String},
+  name: String,
+  profileImageURI: String,
+  customFood: [{ type: Schema.Types.ObjectId, ref: 'Food' }],
   email: {
     type: String,
     unique: true,
@@ -14,9 +17,6 @@ const userSchema = new Schema({
       }
     }
   },
-  name: String,
-  profileImageURI: String,
-  customFood: [{ type: Schema.Types.ObjectId, ref: 'Food' }],
   goals:{
     calories: {type: Number, min: 0, default: 0},
     fat: {type: Number, min: 0, default: 0},
