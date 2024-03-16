@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const cron = require('node-cron');
-require('dotenv').config()
+require('dotenv').config();
 const { connectDB, closeDB } = require('../utils/db/db.js');
 const app = require('../app.js');
 const { reinitializeDailyFood } = require('../controllers/user-controller.js');
