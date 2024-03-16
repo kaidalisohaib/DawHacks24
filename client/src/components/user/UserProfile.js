@@ -155,7 +155,7 @@ function UserDailyGoals() {
         <li>Vitamic C: <span className="daily-goals-numers">20mg/25mg</span></li>
       </ul>
       {/* I will add a link to the ModifyGoals page*/}
-      <Link to="/modify-goals">
+      <Link to="/goals">
         <button className="functionality-btn">Modify Goals</button>
       </Link>
     </section>
