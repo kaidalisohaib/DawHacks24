@@ -43,11 +43,6 @@ function logout(req, res, next) {
   });
 }
 
-function protect(req, res) {
-  //would actually be doing something
-  res.sendStatus(200); 
-}
-
 function session(req, res){
   if (req.session.user) {
     res.status(200).json({ user: req.session.user });
@@ -64,4 +59,4 @@ function isAuthenticated(req, res, next) {
 }
 
 
-module.exports = {isAuthenticated, login, logout, protect, session};
+module.exports = {isAuthenticated, login, logout, session};
