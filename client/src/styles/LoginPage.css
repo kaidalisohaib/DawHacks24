@@ -1,0 +1,113 @@
+#login-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #212224;
+    height: 95vh;
+    overflow: hidden;
+}
+
+#welcome-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212224;
+    color: white;
+}
+
+#welcome-tab > img {
+    width: 50%;
+}
+
+#welcome-container {
+    margin: auto;
+    width: 60%;
+    background-color: #212224;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center; 
+    height: 100%;
+    background-color: white;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-form > input {
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding: 5px;
+    margin: 5px;
+    width: 25vw;
+}
+
+#login-form > input[type="submit"] {
+    width: 75%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #2a3ce2;
+    color: white;
+}
+
+a {
+    font-size: 12px;
+    margin: 3px;
+}
+
+.logout {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: #3e8e41
+}
+
+.separator {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+    margin-top: 10px;
+}
+
+.separator > span {
+    position: relative;
+    display: inline-block;
+}
+
+.separator > span::before,
+.separator > span::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: grey;
+}
+
+.separator > span::before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.separator > span::after {
+    left: 100%;
+    margin-left: 15px;
+}
