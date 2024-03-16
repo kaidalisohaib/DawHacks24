@@ -91,7 +91,9 @@ function UserInfo({user, handleLogout}) {
     <section id="user-info">
       <img src={user.profileImageURI ? user.profileImageURI : blank} alt="Profile pic" />
       <h2>{user.name}</h2>
-      <button className="functionality-btn" id="daily-food-btn">View daily food</button>
+      <Link to="/daily-food">
+        <button className="functionality-btn" id="daily-food-btn">View daily food</button>
+      </Link>  
       <button id="logout-btn" onClick={handleLogout}>Logout</button>
     </section>
   );

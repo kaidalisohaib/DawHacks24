@@ -81,7 +81,7 @@ async function addDailyFood(req, res){
 async function removeDailyFood(req, res){
   try{
     const user = await User.findOne({
-      $or: [{ username: 'amirrezamojtahedi2@gmail.com'}, { email: 'amirrezamojtahedi2@gmail.com' }]
+      $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
     });
     const id = req.params.id;
     user.dailyFood = user.dailyFood.filter(food => food._id.toString() !== id);
@@ -91,6 +91,40 @@ async function removeDailyFood(req, res){
     res.status(400).json({message: 'User cannot be found'});
   }
 }
+
+async function getTotalDailyFood(req, res){
+  try{
+    const user = await User.findOne({
+      $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
+    });
+    const dailyFood = user.dailyFood;
+    const sumObject = { 
+      calories: 0,
+      fat: 0,
+      protein: 0,
+      carbohydrate: 0,
+      sugars: 0,
+      sodium: 0,
+      calcium: 0,
+      cholesterol: 0
+    };
+
+    dailyFood.forEach(food => {
+      sumObject.calories += food.calories;
+      sumObject.fat += food.fat;
+      sumObject.protein += food.protein;
+      sumObject.carbohydrate += food.carbohydrate;
+      sumObject.sugars += food.sugars;
+      sumObject.sodium += food.sodium;
+      sumObject.calcium += food.calcium;
+      sumObject.cholesterol += food.cholesterol;
+    });
+    res.status(200).json({totalDailyFood: sumObject});
+  }catch(e){
+    res.status(400).json({message: 'User cannot be found'});
+  }
+}
+
 
 async function reinitializeDailyFood() {
   try {
@@ -122,4 +156,4 @@ async function reinitializeDailyFood() {
 
 
 module.exports = {getUser, addUser, getGoals, updateGoals, getDailyFood, addDailyFood,
-  reinitializeDailyFood, removeDailyFood};
+  reinitializeDailyFood, removeDailyFood, getTotalDailyFood};
