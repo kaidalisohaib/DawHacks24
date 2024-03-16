@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import TopNavbar from '../Navbar';
+//import TopNavbar from '../Navbar';
 import InputRow from './InputRow';
 import InputBlock from './InputBlock';
 import InputField from './InputField';
 
 import '../../styles/UserForm.css';
 
+/**
+ * ModifyGoals renders a div with a form and allows users to modify their daily consumption goals
+ * 
+ * @component
+ */
 function ModifyGoals(){
   const [formData, setFormData] = useState({
     calories: 0,
