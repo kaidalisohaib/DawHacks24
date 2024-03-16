@@ -15,7 +15,7 @@ let server = null;
 (async () => {
   await connectDB(uri);
   server = app.listen(port, () => {
-    cron.schedule('* * * * *', () => {
+    cron.schedule('0 0 * * *', () => {
       reinitializeDailyFood();
     });
     // eslint-disable-next-line no-console
