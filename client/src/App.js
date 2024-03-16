@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import TopNavbar from './components/Navbar.js';
 import MainPage from './components/mainpage/MainPage.js';
 import UserProfile from './components/user/UserProfile.js';
@@ -17,41 +17,36 @@ import ModifyGoals from './components/forms/ModifyGoals.js';
 function App() {
   // List of all food names from DB (for search bar)
   const [foodDB, setFoodDB] = useState([]);
-  const [originalListFood, setOriginalListFood] = useState([]);
-  const [currListFood, setCurrListFood] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const originalListFoodRef = useRef([]);
+  const savedFoodList = useRef([]);
 
-
-  async function getOriginalFoods(){
-    console.log('getOriginalFoods');
-    let foodData;
+  async function getOriginalFoods() {
     try {
       const url = '/food-buds/api/v1/all-foods';
       const resp = await fetch(url);
-      foodData = await resp.json();
-      console.log('REAL:', foodData);
-      setOriginalListFood(foodData.allFoods);
-      setFoodDB(originalListFood);
+      const foodData = await resp.json();
+      originalListFoodRef.current = foodData.allFoods;
+      console.log('getOriginalFoods');
+      updateWithCustomFood();
+
+      // setFoodDB(foodData.allFoods);
     } catch (error) {
       console.error('Error fetching data:', error);
-    } finally {
-      //Loading state set to true/false
     }
   }
 
-  async function updateWithCustomFood(){
-    console.log(foodDB.length, originalListFood.length);
-    console.log('updateWithCustomFood');
-    let customFoodData;
+  async function updateWithCustomFood() {
     try {
       const url = '/food-buds/api/v1/custom-all-foods';
       const resp = await fetch(url);
-      customFoodData = await resp.json();
-      setFoodDB([...originalListFood, ...customFoodData.allCustomFoods] );
+      const customFoodData = await resp.json();
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      setFoodDB([...originalListFoodRef.current, ...customFoodData.allCustomFoods]);
+      console.log('updateWithCustomFood');
+     
     } catch (error) {
       console.error('Error fetching data:', error);
-    } finally {
-      //Loading state set to true/false
     }
   }
 
@@ -64,7 +59,7 @@ function App() {
   }
 
   function saveFoodList(list){
-    setCurrListFood(list);
+    savedFoodList.current = list;
   }
 
   /**
@@ -74,7 +69,6 @@ function App() {
   useState (() => {
     userSession();
     getOriginalFoods();
-    updateWithCustomFood();
   }, []);
 
   return (
@@ -86,7 +80,7 @@ function App() {
             exact
             path="/"
             // eslint-disable-next-line max-len
-            element={<MainPage listFood={foodDB} />}
+            element={<MainPage listFood={foodDB} updateWithCustomFood={updateWithCustomFood} savedFoodList={savedFoodList} saveFoodList={saveFoodList}/>}
           />
           {/** Allow the profile and login pages to change logged in state
            * and allow navbar to display correct icon

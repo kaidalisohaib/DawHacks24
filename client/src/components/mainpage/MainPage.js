@@ -7,7 +7,7 @@ import FoodList from './FoodList.js';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/MainPage.css';
 
-function MainPage({ listFood}) {
+function MainPage({ listFood, updateWithCustomFood, savedFoodList, saveFoodList }) {
   // What food is currently selected, for detail view
   const [selectedFood, setSelectedFood] = useState(null);
   // List of foods in "cart"
@@ -36,11 +36,11 @@ function MainPage({ listFood}) {
 
   useEffect(() => {
     getTotalNutrition(addedFoods);
-    // updateWithCustomFood();
+    updateWithCustomFood();
     // for (const food of savedFoodList) {
     //   onAddFood(food);
     // }
-    // setAddedFoods(savedFoodList);
+    setAddedFoods(savedFoodList.current);
   }, [addedFoods]);
 
   const onSelectFood = function (food) {
@@ -63,7 +63,7 @@ function MainPage({ listFood}) {
       }
       newAddedFoods.push(foodData);
       setAddedFoods(newAddedFoods);
-      // saveFoodList(newAddedFoods);
+      saveFoodList(newAddedFoods);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
