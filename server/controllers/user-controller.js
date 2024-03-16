@@ -92,6 +92,33 @@ async function removeDailyFood(req, res){
   }
 }
 
+async function getTotalDailyFood(req, res){
+  try{
+    const user = await User.findOne({
+      $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
+    });
+    const dailyFood = user.dailyFood;
+    // Initialize an object to store the sum
+    let sumObject = { 
+      calories: 0,
+      fat: 0,
+      protein: 0,
+      carbohydrate: 0,
+      sugars: 0,
+      sodium: 0,
+      calcium: 0,
+      cholesterol: 0
+    };
+
+    // Loop through each object in the array
+    dailyFood.forEach(obj => {
+      // Add the properties of the current object to the sumObject
+      sumObject.value += obj.value;
+      sumObject.elevation += obj.elevation;
+      sumObject.degree += obj.degree;
+    });
+
+
 async function reinitializeDailyFood() {
   try {
     // Find all users
