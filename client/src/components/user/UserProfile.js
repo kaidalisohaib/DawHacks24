@@ -5,7 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import '../../styles/UserProfile.css';
 import blank from '../../img/blank.png';
-
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 function UserProfile({setIsLoggedIn}) {
   const [user, setUser] = useState(null);
   const [customFoods, setCustomFoods] = useState([]);
@@ -87,6 +91,7 @@ function UserInfo({user, handleLogout}) {
     <section id="user-info">
       <img src={user.profileImageURI ? user.profileImageURI : blank} alt="Profile pic" />
       <h2>{user.name}</h2>
+      <button className="functionality-btn" id="daily-food-btn">View daily food</button>
       <button id="logout-btn" onClick={handleLogout}>Logout</button>
     </section>
   );

@@ -43,11 +43,16 @@
   max-width: 90%;
 }
 
+#user-info .functionality-btn{
+  margin-bottom: 10px;
+  width: 50%;
+}
+
 #user-info-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 40%;
+  height: 90%;
   width: 30%
 }
 
