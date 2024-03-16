@@ -8,6 +8,9 @@ const foodArray = [];
 
 connectDB(uri).then(() => {
   // eslint-disable-next-line no-console
+  console.log('Deleting the existing data in the database. This may take a while.');
+  Food.collection.drop();
+  // eslint-disable-next-line no-console
   console.log('Starting to import data to the database. This may take a while.');
   fs.createReadStream('./utils/data/Nutrition.csv').
     pipe(parse({ delimiter: ',', fromLine: 2 })).

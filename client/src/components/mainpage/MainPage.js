@@ -7,7 +7,7 @@ import FoodList from './FoodList.js';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/MainPage.css';
 
-function MainPage({ listFood, updateWithCustomFood, savedFoodList, saveFoodList }) {
+function MainPage({ listFood, isLoggedIn, updateWithCustomFood, savedFoodList, saveFoodList }) {
   // What food is currently selected, for detail view
   const [selectedFood, setSelectedFood] = useState(null);
   // List of foods in "cart"
@@ -37,11 +37,12 @@ function MainPage({ listFood, updateWithCustomFood, savedFoodList, saveFoodList 
   useEffect(() => {
     getTotalNutrition(addedFoods);
     updateWithCustomFood();
-    // for (const food of savedFoodList) {
-    //   onAddFood(food);
-    // }
-    setAddedFoods(savedFoodList.current);
   }, [addedFoods]);
+
+  
+  useEffect(() => {
+    setAddedFoods(savedFoodList.current);
+  }, []);
 
   const onSelectFood = function (food) {
     setSelectedFood(prev => food);
@@ -85,7 +86,9 @@ function MainPage({ listFood, updateWithCustomFood, savedFoodList, saveFoodList 
     <section id="main-page">
       <div className="section-search">
         <FoodList foods={listFood} addedFoods={addedFoods}
-          onSelectFood={onSelectFood} onAddFood={onAddFood} onDeleteFood={onDeleteFood} />
+          onSelectFood={onSelectFood} onAddFood={onAddFood} onDeleteFood={onDeleteFood}
+          isLoggedIn={isLoggedIn}
+          totalFood={totalFood} />
       </div>
       <div className="section-stats">
         <FoodListStats selectedFood={selectedFood} backToTotal={backToTotal} 

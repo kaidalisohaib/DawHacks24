@@ -27,7 +27,6 @@ function App() {
       const resp = await fetch(url);
       const foodData = await resp.json();
       originalListFoodRef.current = foodData.allFoods;
-      console.log('getOriginalFoods');
       updateWithCustomFood();
 
       // setFoodDB(foodData.allFoods);
@@ -37,13 +36,15 @@ function App() {
   }
 
   async function updateWithCustomFood() {
+    let customFoodData = {allCustomFoods: []}; 
     try {
-      const url = '/food-buds/api/v1/custom-all-foods';
-      const resp = await fetch(url);
-      const customFoodData = await resp.json();
+      if(isLoggedIn){
+        const url = '/food-buds/api/v1/custom-all-foods';
+        const resp = await fetch(url);
+        customFoodData = await resp.json();
+      }
       // eslint-disable-next-line react-hooks/rules-of-hooks
       setFoodDB([...originalListFoodRef.current, ...customFoodData.allCustomFoods]);
-      console.log('updateWithCustomFood');
      
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -80,7 +81,7 @@ function App() {
             exact
             path="/"
             // eslint-disable-next-line max-len
-            element={<MainPage listFood={foodDB} updateWithCustomFood={updateWithCustomFood} savedFoodList={savedFoodList} saveFoodList={saveFoodList}/>}
+            element={<MainPage listFood={foodDB} isLoggedIn={isLoggedIn} updateWithCustomFood={updateWithCustomFood} savedFoodList={savedFoodList} saveFoodList={saveFoodList}/>}
           />
           {/** Allow the profile and login pages to change logged in state
            * and allow navbar to display correct icon
@@ -107,7 +108,7 @@ function App() {
           />
           <Route 
             exact
-            path="/:username/goals"
+            path="/goals"
             element={<ModifyGoals />}
           />
         </Routes>
