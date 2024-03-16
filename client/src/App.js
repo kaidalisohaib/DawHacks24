@@ -58,7 +58,7 @@ function App() {
           <Route 
             exact
             path="/"
-            element={<MainPage listFood={listFood} />}
+            element={<MainPage listFood={listFood} isLoggedIn={isLoggedIn}/>}
           />
           {/** Allow the profile and login pages to change logged in state
            * and allow navbar to display correct icon
@@ -85,13 +85,13 @@ function App() {
           />
           <Route 
             exact
-            path="/:username/goals"
+            path="/goals"
             element={<ModifyGoals />}
           />
           <Route
             exact
             path="/modify-goals"
-            element={<ModifyGoals/>}
+            element={<ModifyGoals/>}//VERIFY THIS
           />
         </Routes>
       </Router>

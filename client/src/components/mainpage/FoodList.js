@@ -1,4 +1,5 @@
 import { toast, Zoom } from 'react-toastify';
+import axios from 'axios';
 
 import SearchBar from './SearchBar.js';
 import { FoodCartItem } from './FoodComponents.js';
@@ -7,7 +8,8 @@ import { FoodCartItem } from './FoodComponents.js';
  * React component with a list of food items
  * that can be added to the user's "cart"
  */
-function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood}) {
+function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isLoggedIn,
+  totalFood}) {
   const foodItemNodes = [];
   for (const food of addedFoods) {
     foodItemNodes.push(
@@ -38,12 +40,33 @@ function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood}) {
 
     document.querySelector('#food-search').value = '';
   }
+
+  const addToDailyFood = async () => {
+    const modifiedTotatlFood = {...totalFood};
+    Object.keys(modifiedTotatlFood).forEach(function(key) {
+      // Check if the key's value is an object with both 'value' and 'percent' keys
+      if (typeof modifiedTotatlFood[key] === 'object' &&
+      modifiedTotatlFood[key].hasOwnProperty('value') &&
+      modifiedTotatlFood[key].hasOwnProperty('percent')) {
+        // Replace the key's value with just the 'value' part
+        modifiedTotatlFood[key] = modifiedTotatlFood[key].value;
+      }
+    });
+    await axios.post('api/v1/daily-food', {
+      dailyFood: modifiedTotatlFood
+    });
+  };
   
   return (
     <section id="food-list-section">
       <SearchBar foodsName={foods} onFoodSearch={onFoodSearch}/>
       <section id="food-list">
         {foodItemNodes}
+        {isLoggedIn && addedFoods.length > 0 && 
+          <button type="button" className="functionality-btn" onClick={addToDailyFood}>
+            Add to daily food
+          </button>
+        }
       </section>
     </section>
   );

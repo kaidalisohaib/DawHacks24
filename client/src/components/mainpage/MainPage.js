@@ -7,7 +7,7 @@ import FoodList from './FoodList.js';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/MainPage.css';
 
-function MainPage({ listFood }) {
+function MainPage({ listFood, isLoggedIn }) {
   // What food is currently selected, for detail view
   const [selectedFood, setSelectedFood] = useState(null);
   // List of foods in "cart"
@@ -80,7 +80,9 @@ function MainPage({ listFood }) {
     <section id="main-page">
       <div className="section-search">
         <FoodList foods={listFood} addedFoods={addedFoods}
-          onSelectFood={onSelectFood} onAddFood={onAddFood} onDeleteFood={onDeleteFood} />
+          onSelectFood={onSelectFood} onAddFood={onAddFood} onDeleteFood={onDeleteFood}
+          isLoggedIn={isLoggedIn}
+          totalFood={totalFood} />
       </div>
       <div className="section-stats">
         <FoodListStats selectedFood={selectedFood} backToTotal={backToTotal} 
