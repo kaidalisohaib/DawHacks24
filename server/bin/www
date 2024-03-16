@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const cron = require('node-cron');
 require('dotenv').config();
 const { connectDB, closeDB } = require('../utils/db/db.js');
 const app = require('../app.js');
+const { reinitializeDailyFood } = require('../controllers/user-controller.js');
 const uri = process.env.CONNECTION_STRING;
 const port = process.env.PORT || 3000;
 
@@ -13,6 +15,9 @@ let server = null;
 (async () => {
   await connectDB(uri);
   server = app.listen(port, () => {
+    cron.schedule('* * * * *', () => {
+      reinitializeDailyFood();
+    });
     // eslint-disable-next-line no-console
     console.log(`Server listening on port ${port}!`);
   });

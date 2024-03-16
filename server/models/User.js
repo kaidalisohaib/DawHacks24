@@ -35,7 +35,8 @@ const userSchema = new Schema({
     sugars: {type: Number, min: 0, default: 0},
     sodium: {type: Number, min: 0, default: 0},
     calcium: {type: Number, min: 0, default: 0},
-    cholesterol: {type: Number, min: 0, default: 0}
+    cholesterol: {type: Number, min: 0, default: 0},
+    timestamp: {type: Date, default: Date.now}
   }],
 });
 

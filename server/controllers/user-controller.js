@@ -53,7 +53,7 @@ async function updateGoals(req, res){
 async function getDailyFood(req, res){
   try{
     const user = await User.findOne({
-      $or: [{ username: 'amirrezamojtahedi2@gmail.com' }, { email: 'amirrezamojtahedi2@gmail.com' }]
+      $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
     });
     res.status(200).json({dailyFood: user.dailyFood});
   }catch(e){
@@ -64,7 +64,7 @@ async function getDailyFood(req, res){
 async function addDailyFood(req, res){
   try{
     const user = await User.findOne({
-      $or: [{ username: 'amirrezamojtahedi2@gmail.com' }, { email: 'amirrezamojtahedi2@gmail.com' }]
+      $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
     });
     const dailyFood = req.body.dailyFood;
     await User.findOneAndUpdate(
@@ -78,5 +78,33 @@ async function addDailyFood(req, res){
   }
 }
 
+async function reinitializeDailyFood() {
+  try {
+    // Find all users
+    const users = await User.find({});
 
-module.exports = {getUser, addUser, getGoals, updateGoals, getDailyFood, addDailyFood};
+    // Iterate over each user
+    for (const user of users) {
+      // Check dailyFood for each user
+      user.dailyFood.forEach(async (food) => {
+        const isoString = food.timestamp;
+        const date = new Date(isoString);
+        const diffMilliseconds = Math.abs(new Date() - date);
+        const diffHours = diffMilliseconds / (1000 * 60 * 60);
+        if (diffHours > 24) {
+          // Remove the expired food entry
+          user.dailyFood.splice(user.dailyFood.indexOf(food), 1);
+          // Save the updated user
+          await user.save();
+        }
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+
+module.exports = {getUser, addUser, getGoals, updateGoals, getDailyFood, addDailyFood,
+  reinitializeDailyFood};
