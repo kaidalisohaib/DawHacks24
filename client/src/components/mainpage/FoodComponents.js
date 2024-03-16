@@ -3,8 +3,8 @@
  * of the items in their cart
  */
 export function FoodListStats({ selectedFood, backToTotal, totalFood }) {
-  // when food is selected,show that food. 
-  // when closed, return display target to total of cart
+// when food is selected,show that food. 
+// when closed, return display target to total of cart
   if (selectedFood) {
     return <FoodTicket food={selectedFood} backToTotal={backToTotal}/>;
   } else if (totalFood) {
@@ -15,10 +15,10 @@ export function FoodListStats({ selectedFood, backToTotal, totalFood }) {
     </>;
   }
 }
-
+  
 /**
- * React component showing the basic info of a food, while on the list
- */
+* React component showing the basic info of a food, while on the list
+*/
 export function FoodCartItem({food, onSelectFood, onDeleteFood}) {
   return (
     <div className="food-item">
@@ -33,10 +33,10 @@ export function FoodCartItem({food, onSelectFood, onDeleteFood}) {
     </div>
   );
 }
-
+  
 /**
  * Food ticket that can display total or singular food information
- */
+*/
 function FoodTicket({ food, backToTotal, total = false}) {
   return (
     <div className="food-ticket">
@@ -133,9 +133,9 @@ function FoodTicket({ food, backToTotal, total = false}) {
       </div>
       <hr className="med-line"></hr>
       <p className="daily-value-par">*The % Daily Value (DV) tells you how much a 
-        nutrient in a serving of food contributes to a 
-        daily diet. 2,000 calories a day is used for 
-        general nutrition advice.
+          nutrient in a serving of food contributes to a 
+          daily diet. 2,000 calories a day is used for 
+          general nutrition advice.
       </p>
       {!total ? <><hr></hr><button className="back-total" 
         onClick={backToTotal}><b>Back To Total</b></button></> : null
