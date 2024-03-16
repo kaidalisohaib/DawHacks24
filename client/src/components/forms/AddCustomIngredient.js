@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import InputRow from './InputRow';
@@ -12,6 +13,8 @@ import '../../styles/UserForm.css';
  * @component 
  */
 function AddCustomIngredient(){
+  const navigate = useNavigate();
+
   /**
    * State for form data.
    * @type {object}
@@ -97,6 +100,7 @@ function AddCustomIngredient(){
       const statusEl = document.getElementById('status');
       await axios.post('/food-buds/api/v1/custom-food', foodObj).then(function (response) {
         statusEl.innerText = 'The custom food has been successfully added!';
+        navigate('/profile');
       }).catch(function (error) {
         statusEl.innerText = 'The custom food is either empty or already exists';
       });
