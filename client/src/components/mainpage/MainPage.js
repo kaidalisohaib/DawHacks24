@@ -77,6 +77,7 @@ function MainPage({ listFood, isLoggedIn, updateWithCustomFood, savedFoodList, s
     const foodsList = [...addedFoods];
     const newFoodsList = foodsList.filter(food => food.name !== name);
     setAddedFoods(newFoodsList);
+    saveFoodList(newFoodsList);
   };
 
   const backToTotal = function () {

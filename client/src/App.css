@@ -30,3 +30,9 @@ body {
   height: 450px;
   margin: 40px;
 }
+#about-us-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

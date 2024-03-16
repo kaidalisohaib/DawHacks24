@@ -57,6 +57,9 @@ function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isL
     await axios.post('api/v1/daily-food', {
       dailyFood: modifiedTotatlFood
     });
+    const statusEl = document.getElementById('status');
+    statusEl.innerText = 'The custom food has been successfully added!';
+
   };
   
   return (
@@ -65,9 +68,9 @@ function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isL
       <section id="food-list">
         {foodItemNodes}
         {isLoggedIn && addedFoods.length > 0 && 
-          <button type="button" className="functionality-btn" onClick={addToDailyFood}>
+          <><button type="button" className="functionality-btn" onClick={addToDailyFood}>
             Add to daily food
-          </button>
+          </button><div id="status" class="input-row"></div></>
         }
       </section>
     </section>
