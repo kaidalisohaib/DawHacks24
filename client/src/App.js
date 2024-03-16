@@ -88,11 +88,7 @@ function App() {
             path="/goals"
             element={<ModifyGoals />}
           />
-          <Route
-            exact
-            path="/modify-goals"
-            element={<ModifyGoals/>}//VERIFY THIS
-          />
+          
         </Routes>
       </Router>
     </>
