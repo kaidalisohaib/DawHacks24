@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const {OAuth2Client} = require('google-auth-library');
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+// eslint-disable-next-line max-len
+const client = new OAuth2Client('867050742854-r7flcg41b730dv3anknua88abascchl6.apps.googleusercontent.com');
 const User = require('../models/User.js');
 
 async function login(req, res, next){
@@ -10,7 +11,7 @@ async function login(req, res, next){
   const {token} = req.body;
   const ticket = await client.verifyIdToken({
     idToken: token,
-    audience: process.env.GOOGLE_CLIENT_ID
+    audience: '867050742854-r7flcg41b730dv3anknua88abascchl6.apps.googleusercontent.com'
   });
   if (!ticket) {
     next(createError(401, 'invalid token'));
