@@ -94,7 +94,12 @@ function AddCustomIngredient(){
         }
     };
     try {
-      await axios.post('/food-buds/api/v1/custom-food', foodObj);
+      const statusEl = document.getElementById('status');
+      await axios.post('/food-buds/api/v1/custom-food', foodObj).then(function (response) {
+        statusEl.innerText = 'The custom food has been successfully added!';
+      }).catch(function (error) {
+        statusEl.innerText = 'The custom food is either empty or already exists';
+      });
     } catch (error) {
       console.error('Error adding custom ingredient:', error.message);
     }
@@ -154,6 +159,7 @@ function AddCustomIngredient(){
           <section class="form-btn-row">
             <button type="submit" class="submit-btn">Add Custom ingredient</button>
           </section>
+          <div id="status" class="input-row"></div>
         </form>
       </main>
     </div>
