@@ -13,6 +13,7 @@ import blank from '../../img/blank.png';
 function UserProfile({setIsLoggedIn}) {
   const [user, setUser] = useState(null);
   const [customFoods, setCustomFoods] = useState([]);
+  const [userGoals, setUserGoals] = useState([]);
   const navigate = useNavigate();
 
   async function userSession(){
@@ -52,6 +53,7 @@ function UserProfile({setIsLoggedIn}) {
   useEffect(() => {
     userSession();
     getCustomFoods();
+    fetchUserGoals();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -79,7 +81,7 @@ function UserProfile({setIsLoggedIn}) {
       </section>
       <section id="user-food-tabs">
         <UserCustomIngredients customFoods={customFoods}/>
-        <UserDailyGoals />
+        <UserDailyGoals userGoals={userGoals}/>
       </section>
     </section>
     <ToastContainer />
@@ -142,21 +144,57 @@ function NoFoodsParagraph() {
   </>;
 }
 
+async function fetchUserGoals() {
+  try {
+    const response = await fetch('/api/v1/goals');
+    // console.log(response)
+    if (response.ok) {
+      const data = await response.json();
+      setUserGoals(data.goals);
+    } else {
+      throw new Error('Failed to fetch user goals');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function noGoals(){
+  return <>
+    <p>
+      You have not set any goals yet. Click on modify Goals to start
+    </p>
+  </>;
+}
+
+function displayGoals(goal){
+  return <>
+    <li>{goal}</li>
+  </>;
+}
 /**
  * @TODO display user goals/percentages/whatnot
  */
-function UserDailyGoals() {
+function UserDailyGoals({userGoals}) {
+  const userGoaslList = [];
+
+  if (userGoals.length === 0){
+    userGoaslList.push(
+      <noGoals/>
+    );
+  }else{
+    for(const goal in userGoals){
+      userGoaslList.push(
+        <displayGoals goal={goal.name}/>
+      );
+    }
+  }
   return (
     <section id="user-goals">
       <h2>Your daily goals</h2>
       <ul>
-        {/* These are only place holders */}
-        <li>Calories: <span className="daily-goals-numers">850/1000</span></li>
-        <li>Fat: <span className="daily-goals-numers">25g/50g</span></li>
-        <li>Protein: <span className="daily-goals-numers">200g/100g</span></li>
-        <li>Vitamic C: <span className="daily-goals-numers">20mg/25mg</span></li>
+        {userGoaslList}
       </ul>
-      {/* I will add a link to the ModifyGoals page*/}
       <Link to="/goals">
         <button className="functionality-btn">Modify Goals</button>
       </Link>

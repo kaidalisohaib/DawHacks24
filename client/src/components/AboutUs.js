@@ -1,4 +1,5 @@
 import '../App.css';
+import food from '../img/fruits.jpg';
 /**
  * AboutUs renders a text explaining the company's goals 
  * 
@@ -40,7 +41,7 @@ function AboutUs() {
         achieve your goals and live your best life.
         </p>
       </div>
-      {/*We should add the image here */}
+      <img id="fruit-pic" src={food} alt="fruits"/>
     </section>
   );
 }

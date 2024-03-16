@@ -18,8 +18,15 @@ body {
   text-align: left;
   width: 60%;
   margin-left: 20px;
+  padding-right: 20px;
 }
 
 #about-us-text h3{
   text-align: center;
+}
+
+#fruit-pic{
+  width:25%;
+  height: 450px;
+  margin: 40px;
 }

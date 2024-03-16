@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 //import TopNavbar from '../Navbar';
 import InputRow from './InputRow';
@@ -37,6 +39,7 @@ function ModifyGoals(){
     cholesterol: 0
   });
   
+  
   /**
    * Handles changes in the input fields.
    * @param {object} e - The event object.
@@ -69,9 +72,7 @@ function ModifyGoals(){
             }
     };
     try {
-      const user = await axios.get('/auth/session');
-      const username = user.data.user.username;
-      await axios.put(`/api/v1/${username}/goals`, goalObj);
+      await axios.put(`/api/v1/goals`, goalObj);
     } catch (err) {
       console.error(err);
     }
@@ -141,7 +142,9 @@ function ModifyGoals(){
 
           </InputRow>
           <section class="form-btn-row">
+            
             <button type="submit" class="submit-btn">Save Modifications</button>
+
           </section>
         </form>
       </main>
