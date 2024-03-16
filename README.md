@@ -1,29 +1,42 @@
 # NutritionCalculator
 
-# How to run the project
-1. Clone the repository at [here](https://github.com/kaidalisohaib/DawHacks24)
-2. Open the project in your favorite IDE
-3. Run npm build-start
-4. Open your browser and go to `http://localhost:3000/`
+## How to Run the Project
 
-# Project Overview
-This project is a simple nutrition calculator that allows you to calculate the nutritional value of a meal based on the ingredients you use. The project is built using the MERN tech stack. The app allows users to create profiles and add thier create their own custom ingredient in case the default database does not already include that ingredient. 
+1. Clone the repository from here.
+2. Open the project in your favorite IDE.
+3. Run npm build-start.
+4. Open your browser and navigate to http://localhost:3000/.
 
-# Data units
-1. Name
-2. calories
-3. Fat (g)
-4. Protein (g)
-5. Carbohydrate (g)
-6. Sugars (g)
-7. Fiber (g)
-8. Cholesterol (mg)
-9. Calcium (mg)
-10. Iron, Fe (mg)
-11. Vitamin C (mg)
-12. Vitamin D (mcg)
-13. Vitamin B.12 (mcg)
-14. Vitamin A, RAE (mcg)
-15. Sodium (mg)
-16. Potassium (mg)
-> NOTE: All servings are in **100 grams**
+## Project Overview
+NutritionCalculator is a comprehensive tool for calculating the nutritional value of meals based on their ingredients. Built with the MERN (MongoDB, Express.js, React, Node.js) stack, this app offers users the ability to create profiles and add custom ingredients to tailor their experience. Whether you're tracking calories or micronutrients, NutritionCalculator simplifies the process with its intuitive interface and extensive database.
+
+## Data Units
+- Name
+- Calories
+- Fat (g)
+- Protein (g)
+- Carbohydrate (g)
+- Sugars (g)
+- Fiber (g)
+- Cholesterol (mg)
+- Calcium (mg)
+- Iron, Fe (mg)
+- Vitamin C (mg)
+- Vitamin D (mcg)
+- Vitamin B.12 (mcg)
+- Vitamin A, RAE (mcg)
+- Sodium (mg)
+- Potassium (mg)
+
+Note: All values are based on servings of 100 grams.
+
+## Try it Out
+Follow these steps to try out the NutritionCalculator:
+
+1. Register or Login: Create an account or log in to your existing account.
+2. Add Ingredients: Start by adding ingredients for your meal. You can choose from the existing database or create custom ingredients.
+3. Set Goals: Set your nutritional goals based on your dietary preferences or requirements.
+4. Calculate: Input your meal's ingredients and let the NutritionCalculator calculate the nutritional values.
+5. Track Progress: Monitor your progress towards your nutritional goals and make adjustments as needed.
+
+This project aims to revolutionize how individuals track and manage their nutrition, providing a seamless experience for users of all levels of expertise.
