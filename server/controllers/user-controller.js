@@ -78,6 +78,20 @@ async function addDailyFood(req, res){
   }
 }
 
+async function removeDailyFood(req, res){
+  try{
+    const user = await User.findOne({
+      $or: [{ username: 'amirrezamojtahedi2@gmail.com'}, { email: 'amirrezamojtahedi2@gmail.com' }]
+    });
+    const id = req.params.id;
+    user.dailyFood = user.dailyFood.filter(food => food._id.toString() !== id);
+    await user.save();
+    res.status(200).json({message: 'Daily food has been removed successfully'});
+  }catch(e){
+    res.status(400).json({message: 'User cannot be found'});
+  }
+}
+
 async function reinitializeDailyFood() {
   try {
     // Find all users
@@ -108,4 +122,4 @@ async function reinitializeDailyFood() {
 
 
 module.exports = {getUser, addUser, getGoals, updateGoals, getDailyFood, addDailyFood,
-  reinitializeDailyFood};
+  reinitializeDailyFood, removeDailyFood};
