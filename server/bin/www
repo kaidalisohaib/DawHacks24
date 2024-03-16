@@ -4,7 +4,7 @@ require('dotenv').config()
 const { connectDB, closeDB } = require('../utils/db/db.js');
 const app = require('../app.js');
 const { reinitializeDailyFood } = require('../controllers/user-controller.js');
-const uri = "mongodb+srv://Amir:Cmessiamir1@dawson.5dqbse3.mongodb.net/NutritionApp?retryWrites=true&w=majority";
+const uri = process.env.CONNECTION_STRING;
 const port = process.env.PORT || 3000;
 
 let server = null;
