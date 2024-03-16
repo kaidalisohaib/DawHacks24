@@ -10,13 +10,15 @@ import { FoodCartItem } from './FoodComponents.js';
  */
 function FoodList({foods, addedFoods, onSelectFood, onAddFood, onDeleteFood, isLoggedIn,
   totalFood}) {
+  let index = 0;
   const foodItemNodes = [];
   for (const food of addedFoods) {
     foodItemNodes.push(
-      <FoodCartItem key={food._id} food={food} 
+      <FoodCartItem key={food._id + index} food={food} 
         onSelectFood={() => onSelectFood(food)} onDeleteFood={() => onDeleteFood(food)}
       />
     );
+    index++;
   }
 
   /**
