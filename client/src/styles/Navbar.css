@@ -1,0 +1,32 @@
+.navbar {
+    overflow: hidden;
+    display: flex;
+    background-color: #b39040;
+    justify-content: flex-end;
+}
+
+.navbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 13vw;
+}
+
+.navbar-item > img {
+  margin: 0;
+  padding: 0;
+  width: 15%
+}
+
+.navbar * {
+  color: white;
+  padding: 5px;
+  margin: 0;
+  text-decoration: none;
+  font-size: 14px;
+  transition-duration: 0.4s;
+}
+
+.navbar *:hover {
+    background-color: #d3ab4c;
+}

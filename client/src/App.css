@@ -1,0 +1,10 @@
+html, body {
+  scrollbar-width: none;
+  height: 100%;
+  background-color: #19221C;
+  font-family: 'Lexend';
+}
+
+body {
+  margin: 0;
+}

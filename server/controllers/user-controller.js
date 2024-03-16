@@ -1,11 +1,11 @@
-const User = require("../models/User.js");
+const User = require('../models/User.js');
 
 async function getUser(req, res) {
   try {
     const user = await User.findOne({ username: req.body.username });
     res.status(200).json({ user: user });
   } catch (e) {
-    res.status(400).json({ message: "User cannot be found" });
+    res.status(400).json({ message: 'User cannot be found' });
   }
 }
 
@@ -17,9 +17,9 @@ async function addUser(req, res) {
       email: req.body.email,
     });
     await user.save();
-    res.status(200).json({ message: "User has been created successfully" });
+    res.status(200).json({ message: 'User has been created successfully' });
   } catch (e) {
-    res.status(400).json({ message: "User cannot be found" });
+    res.status(400).json({ message: 'User cannot be found' });
   }
 }
 
@@ -39,7 +39,7 @@ async function getGoals(req, res) {
       ),
     });
   } catch (e) {
-    res.status(400).json({ message: "User cannot be found" });
+    res.status(400).json({ message: 'User cannot be found' });
   }
 }
 
@@ -53,9 +53,9 @@ async function updateGoals(req, res) {
     });
     user.goals = req.body.goalObj;
     await user.save();
-    res.status(200).json({ message: "Goals have been updated successfully" });
+    res.status(200).json({ message: 'Goals have been updated successfully' });
   } catch (e) {
-    res.status(400).json({ message: "User cannot be found" });
+    res.status(400).json({ message: 'User cannot be found' });
   }
 }
 
