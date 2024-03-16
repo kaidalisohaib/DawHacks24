@@ -98,8 +98,7 @@ async function getTotalDailyFood(req, res){
       $or: [{ username: req.session.user.username }, { email: req.session.user.email }]
     });
     const dailyFood = user.dailyFood;
-    // Initialize an object to store the sum
-    let sumObject = { 
+    const sumObject = { 
       calories: 0,
       fat: 0,
       protein: 0,
@@ -110,13 +109,21 @@ async function getTotalDailyFood(req, res){
       cholesterol: 0
     };
 
-    // Loop through each object in the array
-    dailyFood.forEach(obj => {
-      // Add the properties of the current object to the sumObject
-      sumObject.value += obj.value;
-      sumObject.elevation += obj.elevation;
-      sumObject.degree += obj.degree;
+    dailyFood.forEach(food => {
+      sumObject.calories += food.calories;
+      sumObject.fat += food.fat;
+      sumObject.protein += food.protein;
+      sumObject.carbohydrate += food.carbohydrate;
+      sumObject.sugars += food.sugars;
+      sumObject.sodium += food.sodium;
+      sumObject.calcium += food.calcium;
+      sumObject.cholesterol += food.cholesterol;
     });
+    res.status(200).json({totalDailyFood: sumObject});
+  }catch(e){
+    res.status(400).json({message: 'User cannot be found'});
+  }
+}
 
 
 async function reinitializeDailyFood() {
@@ -149,4 +156,4 @@ async function reinitializeDailyFood() {
 
 
 module.exports = {getUser, addUser, getGoals, updateGoals, getDailyFood, addDailyFood,
-  reinitializeDailyFood, removeDailyFood};
+  reinitializeDailyFood, removeDailyFood, getTotalDailyFood};
