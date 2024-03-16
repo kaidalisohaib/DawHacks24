@@ -180,7 +180,9 @@ function UserDailyGoals({userGoals}) {
 
   if (userGoals.length === 0){
     userGoaslList.push(
-      <noGoals/>
+        <p>
+          You have not set any goals yet. Click on modify Goals to start
+        </p>
     );
   }else{
     for(const goal in userGoals){
