@@ -9,11 +9,23 @@ import InputField from './InputField';
 import '../../styles/UserForm.css';
 
 /**
- * ModifyGoals renders a div with a form and allows users to modify their daily consumption goals
+ * ModifyGoals a form and allows users to modify their daily consumption goals
  * 
  * @component
  */
 function ModifyGoals(){
+  /**
+   * State for form data.
+   * @type {object}
+   * @property {number} calories - The maximum daily calories consumption.
+   * @property {number} fat - The maximum daily fat consumption.
+   * @property {number} protein - The maximum daily protein consumption.
+   * @property {number} carbohydrate - The maximum daily carbohydrate consumption.
+   * @property {number} sugars - The maximum daily sugars consumption.
+   * @property {number} sodium - The maximum daily sodium consumption.
+   * @property {number} calcium - The maximum daily calcium consumption.
+   * @property {number} cholesterol - The maximum daily cholesterol consumption.
+   */
   const [formData, setFormData] = useState({
     calories: 0,
     fat: 0,
@@ -24,7 +36,11 @@ function ModifyGoals(){
     calcium: 0,
     cholesterol: 0
   });
-    
+  
+  /**
+   * Handles changes in the input fields.
+   * @param {object} e - The event object.
+   */ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -32,7 +48,11 @@ function ModifyGoals(){
       [name]: value,
     });
   };
-    
+  
+  /**
+   * Handles form submission.
+   * @param {object} e - The event object.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     const goalObj = {

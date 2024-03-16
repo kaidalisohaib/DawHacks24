@@ -7,7 +7,32 @@ import InputField from './InputField';
 
 import '../../styles/UserForm.css';
 
+/**
+ * AddCustomIngredient is a component for adding custom ingredients
+ * @component 
+ */
 function AddCustomIngredient(){
+  /**
+   * State for form data.
+   * @type {object}
+   * @property {string} name - The name of the ingredient.
+   * @property {number} calories - The number of calories.
+   * @property {number} fat - The amount of fat in grams.
+   * @property {number} protein - The amount of protein in grams.
+   * @property {number} calcium - The amount of calcium in milligrams.
+   * @property {number} iron - The amount of iron in milligrams.
+   * @property {number} sodium - The amount of sodium in milligrams.
+   * @property {number} potassium - The amount of potassium in milligrams.
+   * @property {number} carbohydrate - The amount of carbohydrates in grams.
+   * @property {number} sugars - The amount of sugars in grams.
+   * @property {number} fiber - The amount of fiber in milligrams.
+   * @property {number} cholesterol - The amount of cholesterol in milligrams.
+   * @property {number} vitaminC - The amount of Vitamin C in micrograms.
+   * @property {number} vitaminD - The amount of Vitamin D in micrograms.
+   * @property {number} vitaminB12 - The amount of Vitamin B12 in micrograms.
+   * @property {number} vitaminA - The amount of Vitamin A in micrograms.
+   * @property {boolean} isCustom - Indicates if the ingredient is custom.
+   */
   const [formData, setFormData] = useState({
     name: '',
     calories: 0,
@@ -28,6 +53,10 @@ function AddCustomIngredient(){
     isCustom: true
   });
 
+  /**
+   * Handler for input change events.
+   * @param {Object} e - The event object.
+   */
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -36,6 +65,10 @@ function AddCustomIngredient(){
     });
   };
 
+  /**
+   * Handler for form submission.
+   * @param {Object} e - The event object.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     const foodObj = {
