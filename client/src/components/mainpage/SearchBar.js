@@ -48,6 +48,10 @@ function SearchBar({foodsName, onFoodSearch}) {
       cap--;
     }
     setSearchResults(liNodes);
+    const statusEl = document.getElementById('status');
+    if(statusEl !== null){
+      statusEl.innerText = '';
+    }
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
