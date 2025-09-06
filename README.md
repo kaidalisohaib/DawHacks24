@@ -14,8 +14,8 @@ A full-stack MERN application that allows users to search for foods, track their
 
 ### **Visual Demo**
 
-![](./assets/original.PNG)
-![](./assets/original1.PNG)
+![](https://raw.githubusercontent.com/kaidalisohaib/DawHacks24/refs/heads/main/assets/original.PNG)
+![](https://raw.githubusercontent.com/kaidalisohaib/DawHacks24/refs/heads/main/assets/original1.PNG)
 
 ---
 
