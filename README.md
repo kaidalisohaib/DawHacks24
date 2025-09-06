@@ -91,8 +91,8 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/[Your-GitHub-Username]/FoodBuds.git
-    cd FoodBuds
+    git clone https://github.com/kaidalisohaib/DawHacks24.git
+    cd DawHacks24
     ```
 
 2.  **Install Backend Dependencies:**
